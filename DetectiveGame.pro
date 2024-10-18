@@ -1,6 +1,7 @@
 QT += quick
 
 SOURCES += \
+        casegenerator.cpp \
         main.cpp
 
 resources.files = main.qml 
@@ -17,3 +18,16 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+# Test configuration
+CONFIG(test) {
+    QT += testlib
+    TARGET = tst_$${TARGET}
+    SOURCES -= main.cpp
+    SOURCES += test_main.cpp
+}
+
+HEADERS += \
+    casegenerator.h \
+    global/globalstruct.h \
+    globalstruct.h
